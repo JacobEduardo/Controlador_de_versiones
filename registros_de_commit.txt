@@ -43,3 +43,10 @@
 2.13.4;2024-07-28 20:07:40;Como se desarrollo el proceso de votacion. 
 2.13.5;2024-07-28 20:12:55;comentario 2
 2.14.5;2024-07-28 20:21:32;Estamos comentando esta linea;Modificado:index.js;Archivo Agregado:sub\asdf;Archivo Agregado:sub\asdfff;Archivo Agregado:sub\fdfdf.fdf;Modificado:sub\pagina.js
+2.15.0;2024-07-28 20:48:54;Estoy agrenado u n comasdkjfasd fasdf
+2.15.1;2024-07-28 20:50:07;Comentario por que somo profecionales o no?
+2.15.2;2024-07-28 21:05:41;Estamnos agregando un comentario. ;Modificado:index.html;Modificado:index.js;Archivo Agregado:sub\eeee;Archivo Eliminado:sub\asdfff;Archivo Eliminado:sub\dfadsf.td;Archivo Eliminado:sub\fdfdf.fdf
+2.15.3;2024-07-28 21:11:00;Este es un comentario.
+2.15.4;2024-07-28 21:34:06;Agregando un contador. ;Modificado:sub\eeee;Modificado:sub\pagina.js
+2.15.5;2024-07-28 21:46:05;Fue una actualizacion valida. ;Modificado:sub\asdf;Modificado:sub\pagina.js;Archivo Eliminado:sub\eeee
+2.15.6;2024-07-28 21:56:50;Estoy agregando algunos cambios. 

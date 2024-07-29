@@ -31,7 +31,7 @@ def mostrar_version_actual():
 def procesar_actualizacion(version_actual, version_actual_en_archivos):
     while True:
         nueva_version = input(Style.RESET_ALL + "Introduce la nueva versión: " + Fore.YELLOW)
-        if es_version_valida(version_actual,nueva_version):
+        if es_version_valida(version_actual, nueva_version):
             break
         else:
             print(Fore.RED + f"La versión {nueva_version} no es válida. Por favor, introduce una versión mayor que {version_actual}." + Style.RESET_ALL)
@@ -41,39 +41,38 @@ def procesar_actualizacion(version_actual, version_actual_en_archivos):
         if comentario != '':
             break
         else:
-            print(Fore.RED + f"Ingrese un comentario valido." + Style.RESET_ALL) 
+            print(Fore.RED + "Ingrese un comentario válido." + Style.RESET_ALL) 
     
     while True:
         forzar = input(Style.RESET_ALL + "¿Desea forzar la actualización? Inserte 'si' o 'no': " + Fore.YELLOW)
         if forzar == 'si' or forzar == 'no':
             break
         else:
-            print(Fore.RED + f"Ingrese una opcion valida." + Style.RESET_ALL) 
+            print(Fore.RED + "Ingrese una opción válida." + Style.RESET_ALL) 
     
     while True:   
         confirmar = input(Style.RESET_ALL + "Inserte 'confirmar' para cambiar versión o 'no' para cancelar: " + Fore.YELLOW)
-        if confirmar == 'confirmar' or comentario == 'no':
-            print('\n')
+        if confirmar == 'confirmar' or confirmar == 'no':
             break
         else:
-            print(Fore.RED + f"Ingrese una opcion valida." + Style.RESET_ALL) 
+            print(Fore.RED + "Ingrese una opción válida." + Style.RESET_ALL) 
 
     if confirmar == 'confirmar':
-        agregar_commit('commit.txt', comentario, nueva_version)
-        generar_registro_de_commit(nueva_version, 'modified.txt', RUTA_WEB, RUTA_REGISTROS_DE_VERSION, comentario)
+        cantidad_de_cambios = generar_registro_de_commit(nueva_version, 'modified.txt', RUTA_WEB, RUTA_REGISTROS_DE_VERSION, comentario)
+        agregar_commit('commit.txt', comentario, nueva_version,cantidad_de_cambios)
 
         if forzar == 'si':
             n = 0
             for archivo in ARCHIVOS_HTML:
                 reemplazar_palabra_en_archivo(archivo, "App." + version_actual_en_archivos, "App." + nueva_version)
                 n += 1
-            print(Fore.GREEN + f"Se modificó la versión en {n} archivos HTML" + Style.RESET_ALL)
+            print(Fore.GREEN + f"Se modificó la versión en {n} archivos HTML." + Style.RESET_ALL)
 
             n = 0
             for archivo in ARCHIVOS_JAVASCRIPT:
                 reemplazar_palabra_en_archivo(archivo, "v=" + version_actual_en_archivos, "v=" + nueva_version)
                 n += 1
-            print(Fore.GREEN + f"Se modificó la versión en {n} archivos JavaScript" + Style.RESET_ALL)
+            print(Fore.GREEN + f"Se modificó la versión en {n} archivos JavaScript." + Style.RESET_ALL)
 
             sobrescribir_linea_en_archivo(2, nueva_version, "versiones")
 
@@ -102,12 +101,12 @@ def procesar_chequeo(solicitud):
                 else:
                     print(Fore.WHITE + f"{elemento}" + Style.RESET_ALL)
     except Exception as e:
-        print(Fore.RED + f"La versión ingresada no es válida o no tiene registros."+ Style.RESET_ALL)
+        print(Fore.RED + "La versión ingresada no es válida o no tiene registros." + Style.RESET_ALL)
 
 def main():
     while True:
         version_actual, version_actual_en_archivos = mostrar_version_actual()
-        solicitud = input("Inserte 'actualizar', 'chequear' o 'salir': " + Fore.YELLOW)
+        solicitud = input("Inserte 'actualizar', 'chequear', 'chequear X.X.X' o 'salir': " + Fore.YELLOW)
 
         if solicitud == 'chequear':
             leer_y_imprimir_archivo('commit.txt')
@@ -117,7 +116,7 @@ def main():
             procesar_actualizacion(version_actual, version_actual_en_archivos)
         elif solicitud == 'salir':
             print(Fore.GREEN + "Saliendo del programa..." + Style.RESET_ALL)
-            time.sleep(2) 
+            time.sleep(1) 
             sys.exit(0)
             break
         else:

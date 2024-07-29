@@ -84,6 +84,7 @@ def generar_registro_de_commit(nueva_version, ruta_guardados,ruta_web,ruta_regis
     else:
         print(Fore.LIGHTMAGENTA_EX + f"La actualizacion modificó {len(cambios)} archivos"+ Style.RESET_ALL)
     agregar_registro_commit(ruta_registro_commit,commit,nueva_version,cambios)
+    return len(cambios)
 
 def leer_linea_con_version(nombre_archivo, version_buscada):
     try:

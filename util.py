@@ -38,10 +38,10 @@ def sobrescribir_linea_en_archivo(line, nuevo_valor, nombre_archivo):
     except Exception as e:
         print(f"Ocurrió un error al sobrescribir la línea en el archivo: {e}")
 
-def agregar_commit(nombre_archivo,comentario, nueva_version):
+def agregar_commit(nombre_archivo,comentario, nueva_version,cantidad_de_cambios):
     try:
         fecha_actual = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        linea_a_agregar = f"{fecha_actual} - {nueva_version} - {comentario}"
+        linea_a_agregar = f"{fecha_actual} - {nueva_version} - {comentario} - {cantidad_de_cambios}"
         
         with open(nombre_archivo, 'a') as archivo:
             archivo.write(linea_a_agregar + '\n')
@@ -99,10 +99,22 @@ def leer_archivo (nombre_archivo):
 
 def imprimir_por_consola(contenido):
     colores = [Fore.WHITE, Fore.LIGHTBLACK_EX]
+    color_ultimo_valor = Fore.MAGENTA # El color para el último valor
     
     for i, linea in enumerate(contenido):
+        # Divide la línea en partes
+        partes = linea.strip().rsplit(' ', 1)  # Divide por el último espacio
+        if len(partes) == 2:
+            texto = partes[0]
+            ultimo_valor = partes[1]
+        else:
+            texto = partes[0]
+            ultimo_valor = ''  # En caso de que no haya valor adicional
+        
+        # Imprime las partes con el color correspondiente
         color = colores[i % len(colores)]
-        print(color + linea.strip() + Style.RESET_ALL)
+        print(color + texto + ' ' + color_ultimo_valor + ultimo_valor + Style.RESET_ALL)
+
 
 def sobre_escribir_archivo(nombre_archivo,nuevo_contenido):
     try:
