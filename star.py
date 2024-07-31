@@ -12,7 +12,10 @@ from util import (
 from modf import (
     sobre_escribir_registros,
     generar_registro_de_commit,
-    leer_linea_con_version
+    leer_linea_con_version,
+    obtener_cambios_en_version,
+    obtener_registros_guardadas,
+    obtener_registros_actuales
 )
 
 init(autoreset=True)
@@ -119,6 +122,17 @@ def main():
             time.sleep(1) 
             sys.exit(0)
             break
+        elif solicitud == 'cambios':
+            registros_guardadas = obtener_registros_guardadas('modified.txt')
+            registros_actuales = obtener_registros_actuales(RUTA_WEB)
+            cambios_sin_guardar = obtener_cambios_en_version(registros_actuales, registros_guardadas)
+            for registro in cambios_sin_guardar:
+                if registro[0] == "Archivo Agregado:":
+                    print(Fore.GREEN + f'{registro[0]} {registro[1]}' + Style.RESET_ALL)
+                if registro[0] == "Archivo Eliminado:":
+                    print(Fore.GREEN + f'{registro[0]} {registro[1]}' + Style.RESET_ALL)
+                if registro[0] == "Modificado:":
+                    print(Fore.GREEN + f'{registro[0]} {registro[1]}' + Style.RESET_ALL)
         else:
             print(Fore.RED + "Opción no válida. Por favor, inserte 'actualizar', 'chequear' o 'salir'." + Style.RESET_ALL)
 

@@ -99,19 +99,17 @@ def leer_archivo (nombre_archivo):
 
 def imprimir_por_consola(contenido):
     colores = [Fore.WHITE, Fore.LIGHTBLACK_EX]
-    color_ultimo_valor = Fore.MAGENTA # El color para el último valor
+    color_ultimo_valor = Fore.MAGENTA 
     
     for i, linea in enumerate(contenido):
-        # Divide la línea en partes
-        partes = linea.strip().rsplit(' ', 1)  # Divide por el último espacio
+        partes = linea.strip().rsplit(' ', 1) 
         if len(partes) == 2:
             texto = partes[0]
             ultimo_valor = partes[1]
         else:
             texto = partes[0]
-            ultimo_valor = ''  # En caso de que no haya valor adicional
-        
-        # Imprime las partes con el color correspondiente
+            ultimo_valor = '' 
+            
         color = colores[i % len(colores)]
         print(color + texto + ' ' + color_ultimo_valor + ultimo_valor + Style.RESET_ALL)
 
